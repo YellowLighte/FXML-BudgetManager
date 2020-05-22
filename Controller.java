@@ -73,9 +73,6 @@ public class Controller implements Initializable {
     @FXML
     private void handleAddPurchase(ActionEvent e) throws IOException {
         System.out.println("Add purchase was clicked!");
-        //purchaseMenu.setVisible(true);
-        //gridAddPurchase.setVisible(true);
-        //chartPane.setVisible(false);
         Parent addPurchaseParent = FXMLLoader.load(getClass().getResource("AddPurchaseWindow.fxml"));
         Scene addPurchaseScene = new Scene(addPurchaseParent);
         Stage window = (Stage) ((Node) e.getSource()).getScene().getWindow();
