@@ -8,7 +8,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -28,8 +31,23 @@ public class AddPurchaseWindow implements Initializable {
     TextField txtPurchaseName, txtPurchasePrice;
 
     @FXML
+    VBox addPurchaseMenu = new VBox();
+
+    @FXML
+    RadioButton rbFood, rbClothes, rbEntertainment, rbOther;
+
+    @FXML
+    ToggleGroup purchaseGroup;
+
+    @FXML
     private void handleAddPurchase() {
         System.out.println("Add purchase button clicked!");
+        double purchasePrice = Double.parseDouble(txtPurchasePrice.getText());
+        Purchase purchase = new Purchase(txtPurchaseName.getText(),purchaseGroup.getSelectedToggle().toString(), purchasePrice);
+        Controller.backend.addPurchase(purchase);
+        System.out.println("Purchase created!");
+        txtPurchaseName.setText("");
+        txtPurchasePrice.setText("");
     }
 
     @FXML
@@ -42,6 +60,6 @@ public class AddPurchaseWindow implements Initializable {
         window.setScene(addPurchaseScene);
     }
 
-  //Test to see if GitHub changes
+
 
 }

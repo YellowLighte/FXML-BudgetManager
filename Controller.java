@@ -44,7 +44,7 @@ public class Controller implements Initializable {
     @FXML
     GridPane gridAddPurchase = new GridPane();
 
-    private Backend backend = new Backend();
+    public static Backend backend = new Backend();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -82,8 +82,13 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void handleShowPurchase(ActionEvent e) {
+    private void handleShowPurchase(ActionEvent e) throws IOException {
         System.out.println("Show purchase was clicked!");
+        Parent purchaseParent = FXMLLoader.load(getClass().getResource("purchaseTableView.fxml"));
+        Scene purchaseScene = new Scene(purchaseParent);
+        Stage window = (Stage) ((Node) e.getSource()).getScene().getWindow();
+
+        window.setScene(purchaseScene);
     }
 
     @FXML

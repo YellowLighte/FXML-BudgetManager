@@ -1,15 +1,19 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Backend {
-    ArrayList<Purchase> purchaseObjectsList = new ArrayList<>();
+    ObservableList<Purchase> purchaseObjectsList = FXCollections.observableArrayList();
+    //ArrayList<Purchase> purchaseObjectsList = new ArrayList<>();
     Double purchaseTotal;
-    Double grandTotal = 0.0;
-    Double incomeTotal = 0.0;
+    //Double grandTotal = 0.0;
+    //Double incomeTotal = 0.0;
     Double balance = 0.00;
     File file = new File("Purchases.txt");
 
