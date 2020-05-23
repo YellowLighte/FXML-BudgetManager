@@ -59,7 +59,7 @@ public class Backend {
         return sum;
     } //Keep
 
-    public double sumOfPurchasesType(ArrayList<Purchase> arr, String type) {
+    public double sumOfPurchasesType(ObservableList<Purchase> arr, String type) { //changed from ArrayList<Purchase>
         double sum = 0;
 
         for (int i = 0; i < arr.size(); i++) {

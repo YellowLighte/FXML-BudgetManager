@@ -99,10 +99,10 @@ public class Controller implements Initializable {
     private void loadPieChartData() {
         chartPane.getChildren().clear();
         ObservableList<PieChart.Data> pieChart = FXCollections.observableArrayList();
-        pieChart.add(new PieChart.Data("Food", 1));
-        pieChart.add(new PieChart.Data("Clothes", 2));
-        pieChart.add(new PieChart.Data("Entertainment", 3));
-        pieChart.add(new PieChart.Data("Other", 4));
+        pieChart.add(new PieChart.Data("Food", backend.sumOfPurchasesType(backend.purchaseObjectsList, "Food")));
+        pieChart.add(new PieChart.Data("Clothes", backend.sumOfPurchasesType(backend.purchaseObjectsList, "Clothes")));
+        pieChart.add(new PieChart.Data("Entertainment", backend.sumOfPurchasesType(backend.purchaseObjectsList, "Entertainment")));
+        pieChart.add(new PieChart.Data("Other", backend.sumOfPurchasesType(backend.purchaseObjectsList, "Other")));
 
         PieChart chart = new PieChart(pieChart);
         chartPane.getChildren().add(chart);
