@@ -45,26 +45,14 @@
             <Insets left="10.0" right="10.0" top="10.0" />
          </padding></VBox>
    </left>
-   <right>
-      <VBox fx:id="purchaseMenu" spacing="8.0" style="-fx-background-color: blue;" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Purchase type:" />
-            <RadioButton id="rbFood" fx:id="rbFood" mnemonicParsing="false" text="Food">
-               <toggleGroup>
-                  <ToggleGroup fx:id="purchaseGroup" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton id="rbClothes" fx:id="rbClothes" mnemonicParsing="false" text="Clothes" toggleGroup="$purchaseGroup" />
-            <RadioButton id="rbEntertainment" fx:id="rbEntertainment" mnemonicParsing="false" text="Entertainment" toggleGroup="$purchaseGroup" />
-            <RadioButton fx:id="rbOther" contentDisplay="CENTER" mnemonicParsing="false" text="Other" toggleGroup="$purchaseGroup" />
-         </children></VBox>
-   </right>
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
               <MenuItem mnemonicParsing="false" text="Close" />
+                  <MenuItem fx:id="btnLoad" mnemonicParsing="false" onAction="#handleLoad" text="Load" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleSave" text="Save" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">

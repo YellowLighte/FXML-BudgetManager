@@ -19,18 +19,13 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
-
-    @FXML
-    RadioButton rbFood, rbClothes, rbEntertainment, rbOther;
-
-    @FXML
-    ToggleGroup purchaseGroup;
 
     @FXML
     Button btnAddIncome, btnAddPurchase, btnShowPurchase;
@@ -41,14 +36,12 @@ public class Controller implements Initializable {
     @FXML
     Pane chartPane = new Pane();
 
-    @FXML
-    GridPane gridAddPurchase = new GridPane();
-
     public static Backend backend = new Backend();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         purchaseMenu.setVisible(false);
+        backend.loadPurchases();
         loadPieChartData();
 
         
@@ -92,17 +85,25 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void handleNewPurchase(ActionEvent e) {
-
+    private void handleLoad(ActionEvent e) throws IOException {
+        System.out.println("Load was clicked!");
+        backend.loadPurchases();
     }
+
+    @FXML
+    private void handleSave(ActionEvent e) throws IOException {
+        System.out.println("Save was clicked!");
+        backend.savePurchases();
+    }
+
 
     private void loadPieChartData() {
         chartPane.getChildren().clear();
         ObservableList<PieChart.Data> pieChart = FXCollections.observableArrayList();
-        pieChart.add(new PieChart.Data("Food", backend.sumOfPurchasesType(backend.purchaseObjectsList, "Food")));
-        pieChart.add(new PieChart.Data("Clothes", backend.sumOfPurchasesType(backend.purchaseObjectsList, "Clothes")));
-        pieChart.add(new PieChart.Data("Entertainment", backend.sumOfPurchasesType(backend.purchaseObjectsList, "Entertainment")));
-        pieChart.add(new PieChart.Data("Other", backend.sumOfPurchasesType(backend.purchaseObjectsList, "Other")));
+        pieChart.add(new PieChart.Data("Food", backend.sumOfPurchasesType(backend.purchaseObjectsList, "Food")/backend.getBalance()));
+        pieChart.add(new PieChart.Data("Clothes", backend.sumOfPurchasesType(backend.purchaseObjectsList, "Clothes")/backend.getBalance()));
+        pieChart.add(new PieChart.Data("Entertainment", backend.sumOfPurchasesType(backend.purchaseObjectsList, "Entertainment")/backend.getBalance()));
+        pieChart.add(new PieChart.Data("Other", backend.sumOfPurchasesType(backend.purchaseObjectsList, "Other")/backend.getBalance()));
 
         PieChart chart = new PieChart(pieChart);
         chartPane.getChildren().add(chart);
