@@ -57,6 +57,7 @@ public class AddPurchaseWindow implements Initializable {
         Scene addPurchaseScene = new Scene(addPurchaseParent);
         Stage window = (Stage) ((Node) e.getSource()).getScene().getWindow();
 
+
         window.setScene(addPurchaseScene);
     }
 

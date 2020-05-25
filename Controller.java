@@ -10,11 +10,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextInputDialog;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -31,7 +29,7 @@ public class Controller implements Initializable {
     Button btnAddIncome, btnAddPurchase, btnShowPurchase;
 
     @FXML
-    VBox purchaseMenu = new VBox();
+    Label lblBalance = new Label();
 
     @FXML
     Pane chartPane = new Pane();
@@ -40,9 +38,8 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        purchaseMenu.setVisible(false);
-        backend.loadPurchases();
         loadPieChartData();
+        lblBalance.setText("$" + backend.getBalance());
 
         
     }
@@ -61,6 +58,8 @@ public class Controller implements Initializable {
             backend.addIncome(Double.parseDouble(addIncome.getEditor().getText()));
             System.out.println("Income add was successful!");
         }
+
+        lblBalance.setText("$" + backend.getBalance());
     }
 
     @FXML
@@ -69,6 +68,7 @@ public class Controller implements Initializable {
         Parent addPurchaseParent = FXMLLoader.load(getClass().getResource("AddPurchaseWindow.fxml"));
         Scene addPurchaseScene = new Scene(addPurchaseParent);
         Stage window = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        lblBalance.setText("$" + backend.getBalance());
 
         window.setScene(addPurchaseScene);
 
@@ -80,6 +80,7 @@ public class Controller implements Initializable {
         Parent purchaseParent = FXMLLoader.load(getClass().getResource("purchaseTableView.fxml"));
         Scene purchaseScene = new Scene(purchaseParent);
         Stage window = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        lblBalance.setText("$" + backend.getBalance());
 
         window.setScene(purchaseScene);
     }
@@ -88,12 +89,14 @@ public class Controller implements Initializable {
     private void handleLoad(ActionEvent e) throws IOException {
         System.out.println("Load was clicked!");
         backend.loadPurchases();
+        lblBalance.setText("$" + backend.getBalance());
     }
 
     @FXML
     private void handleSave(ActionEvent e) throws IOException {
         System.out.println("Save was clicked!");
         backend.savePurchases();
+        lblBalance.setText("$" + backend.getBalance());
     }
 
 

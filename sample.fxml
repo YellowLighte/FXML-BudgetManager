@@ -29,11 +29,24 @@
          </right></BorderPane>
    </children>
    <left>
-      <VBox spacing="8.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER">
+      <VBox spacing="8.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="btnAddIncome" mnemonicParsing="false" onAction="#handleAddIncome" prefHeight="31.0" prefWidth="126.0" text="Add Income" />
             <Button fx:id="btnAddPurchase" mnemonicParsing="false" onAction="#handleAddPurchase" prefHeight="31.0" prefWidth="126.0" text="Add Purchase" />
             <Button fx:id="btnShowPurchase" mnemonicParsing="false" onAction="#handleShowPurchase" text="Show Purchases" />
+            <Label text="Balance:">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </Label>
+            <Label fx:id="lblBalance" text="\$">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
          </children>
          <opaqueInsets>
             <Insets />
